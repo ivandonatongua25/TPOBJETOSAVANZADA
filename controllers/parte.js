@@ -6,6 +6,7 @@ const Parte = require('../models/parte');
 const addParte = async (req,res) => {
     
     const parte = new Parte(req.body);
+    parte.stock = req.params.stock-req.params.cantpartesDesper-req.params.cantpartesConsum;
     await parte.save()
    .then((data)=>res.json(data))
    .catch((errora=> res.json({messeage :errora}))) 
